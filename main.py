@@ -1,12 +1,16 @@
 import pygame
+
+#INSTANCIAS
 pygame.init()
+
+#VARIABLES
+pantalla = pygame.display.set_mode((500, 500))
 fondo = pygame.image.load("./assets/Imagenes/fondo.jpg").convert()
 fondo = pygame.transform.scale(fondo, (500, 500))
-pantalla = pygame.display.set_mode((500, 500))
 pygame.display.set_caption("J23 - OOP")
 reloj = pygame.time.Clock()
 
-
+corriendo = True
 while corriendo: 
     reloj.tick(30) # Limita a 30 FPS
     
