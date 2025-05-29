@@ -1,6 +1,7 @@
 import pygame
 from util import TAM_PANTALLA_X, TAM_PANTALLA_Y
 
+
 #INSTANCIAS
 pygame.init()
 
@@ -10,6 +11,8 @@ fondo = pygame.image.load("./assets/Imagenes/fondo.jpg").convert()
 fondo = pygame.transform.scale(fondo, (TAM_PANTALLA_X, TAM_PANTALLA_Y))
 pygame.display.set_caption("J23 - OOP")
 reloj = pygame.time.Clock()
+
+
 
 corriendo = True
 while corriendo: 
