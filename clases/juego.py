@@ -17,9 +17,9 @@ class Juego(pygame.sprite.Sprite):
 
         #VARIABLES
         self.pantalla = pygame.display.set_mode((self.tamañoPantallaX, self.tamañoPantallaY))
-        self.fondo = pygame.image.load("./assets/Imagenes/fondo.gif").convert()
+        self.fondo = pygame.image.load(SRPITE_FONDO_PANTALLA).convert()
         self.fondo = pygame.transform.scale(self.fondo, (self.tamañoPantallaX, self.tamañoPantallaY))
-        pygame.display.set_caption("PEPE")
+        pygame.display.set_caption("GALAXIAN")
 
 
     def mostrarMenu(self): 
