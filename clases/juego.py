@@ -81,11 +81,12 @@ class Juego(pygame.sprite.Sprite):
         if keys[pygame.K_DOWN] and naveJugador.rect.left < TAM_PANTALLA_Y:
             pass #ABAJO
         if keys[pygame.K_SPACE]:
-            naveJugador.disparar() 
+            naveJugador.Disparar() # IMPLEMENTARRRRRRR
 
         todos = pygame.sprite.Group()
         todos.add(naveJugador)
         todos.draw(self.pantalla)
+        naveJugador.dibujarBala(self.pantalla)
 
     def getShowMenu(self):
         return self.showMenu
