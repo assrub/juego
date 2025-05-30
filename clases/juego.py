@@ -1,73 +1,70 @@
 import pygame
+from util import *
 from .texto import Texto
 
 class Juego(pygame.sprite.Sprite):
     def __init__(self, nivel = 1, jugadores = 1, mejorPuntuacion = 0, enemigos = 0):
         self.nivel = nivel
+        self.Cantjugadores = jugadores
         self.mejorPuntuacion = mejorPuntuacion
         self.enemigos = enemigos
-        self.fondo = None
+
+        self.tamañoPantallaX = TAM_PANTALLA_X
+        self.tamañoPantallaY = TAM_PANTALLA_Y
         self.finalizarJuego = False
         self.teclasPresionadas = None
-        self.jugadores = jugadores
-        self.juegoMostrarMenu = True
 
-    def mostrarMenu(self, pantalla, fondo, tamPantallaX, tamPantallaY):
-        self.fondo = fondo
+        #VARIABLES
+        self.pantalla = pygame.display.set_mode((self.tamañoPantallaX, self.tamañoPantallaY))
+        self.fondo = pygame.image.load("./assets/Imagenes/fondo.jpg").convert()
+        self.fondo = pygame.transform.scale(self.fondo, (self.tamañoPantallaX, self.tamañoPantallaY))
+        pygame.display.set_caption("PEPE")
+
+
+    def mostrarMenu(self): 
         if self.teclasPresionadas == pygame.K_UP:
-            if self.jugadores == 1:
-                self.jugadores = 2
+            if self.Cantjugadores == 1:
+                self.Cantjugadores = 2
             else:
-                self.jugadores = 1
+                self.Cantjugadores = 1
             self.teclasPresionadas = None 
 
         if self.teclasPresionadas == pygame.K_DOWN:
-            if self.jugadores == 2:
-                self.jugadores = 1
+            if self.Cantjugadores == 2:
+                self.Cantjugadores = 1
             else:
-                self.jugadores = 2
+                self.Cantjugadores = 2
             self.teclasPresionadas = None
 
         if self.teclasPresionadas == pygame.K_RETURN:
-            self.juegoMostrarMenu = False
+            return False
             
 
-        pantalla.blit(fondo, (0, 0))
+        self.pantalla.blit(self.fondo, (0, 0))
 
-        txtPlayer1 = Texto(pantalla, "Player 1", pygame.font.Font(None, 48), (255, 255, 0) if self.jugadores == 1 else (255, 255, 255), (tamPantallaX*0.4,tamPantallaY*0.4))   
+        txtPlayer1 = Texto(self.pantalla, "Player 1", pygame.font.Font(None, 48), (255, 255, 0) if self.Cantjugadores == 1 else (255, 255, 255), (self.tamañoPantallaX*0.4,self.tamañoPantallaY*0.4))   
         txtPlayer1.renderizar()
-        txtPlayer2 = Texto(pantalla, "Player 2", pygame.font.Font(None, 48), (255, 255, 0) if self.jugadores == 2 else (255, 255, 255), (tamPantallaX*0.4,tamPantallaY*0.5))
+        txtPlayer2 = Texto(self.pantalla, "Player 2", pygame.font.Font(None, 48), (255, 255, 0) if self.Cantjugadores == 2 else (255, 255, 255), (self.tamañoPantallaX*0.4,self.tamañoPantallaY*0.5))
         txtPlayer2.renderizar()
         return True
 
 
-    def iniciarJuego(self, pantalla):
-        pantalla.blit(self.fondo, (0, 0))
-        print("iniciando el juego")
+    def iniciarJuego(self):
+        self.actualizarJuego() 
 
-        
 
-    def finalizarJuego(self):
-        pass
-
-    def actualizarJuego(self):
-        pass
-
-    def gestionarIteraciones(self):
-        pass
-    
-    def setJugadores(self, jugadores):
-        self.jugadores = jugadores
-        print("Soy un juego con " + str(self.jugadores))
 
     def setFinalizarJuego(self, finalizarJuego):
         self.finalizarJuego = finalizarJuego 
 
-    def getFinalizarJuego(self):
+    def finalizarJuego(self):
         return self.finalizarJuego
+
+    def actualizarJuego(self):
+        self.pantalla.blit(self.fondo, (0, 0))
+
+    def gestionarIteraciones(self):
+        pass
     
     def keyPressed(self, tecla):
         self.teclasPresionadas = tecla
-
-    def getMostrarMenu(self):
-        return self.juegoMostrarMenu
