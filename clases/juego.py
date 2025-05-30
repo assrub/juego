@@ -42,9 +42,13 @@ class Juego(pygame.sprite.Sprite):
 
         self.pantalla.blit(self.fondo, (0, 0))
 
-        txtPlayer1 = Texto(self.pantalla, "Player 1", pygame.font.Font(None, 48), (255, 255, 0) if self.Cantjugadores == 1 else (255, 255, 255), (self.tamañoPantallaX*0.4,self.tamañoPantallaY*0.4))   
+        txtPlayer1 = Texto(self.pantalla, "Player 1", pygame.font.Font(FUENTE_MENU_FONT, FUENTE_MENU_TAMAÑO), 
+                           FUENTE_MENU_COLOR_SELECCION if self.Cantjugadores == 1 else FUENTE_MENU_COLOR, 
+                           (self.tamañoPantallaX*0.4,self.tamañoPantallaY*0.4))   
         txtPlayer1.renderizar()
-        txtPlayer2 = Texto(self.pantalla, "Player 2", pygame.font.Font(None, 48), (255, 255, 0) if self.Cantjugadores == 2 else (255, 255, 255), (self.tamañoPantallaX*0.4,self.tamañoPantallaY*0.5))
+        txtPlayer2 = Texto(self.pantalla, "Player 2", pygame.font.Font(FUENTE_MENU_FONT, FUENTE_MENU_TAMAÑO), 
+                           FUENTE_MENU_COLOR_SELECCION if self.Cantjugadores == 2 else FUENTE_MENU_COLOR, 
+                           (self.tamañoPantallaX*0.4,self.tamañoPantallaY*0.5))
         txtPlayer2.renderizar()
         return True
 
