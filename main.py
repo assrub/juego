@@ -1,7 +1,6 @@
 import pygame
 from util import TAM_PANTALLA_X, TAM_PANTALLA_Y
-
-
+from clases import *
 #INSTANCIAS
 pygame.init()
 
@@ -12,28 +11,22 @@ fondo = pygame.transform.scale(fondo, (TAM_PANTALLA_X, TAM_PANTALLA_Y))
 pygame.display.set_caption("J23 - OOP")
 reloj = pygame.time.Clock()
 
-
-
-corriendo = True
-while corriendo: 
+juego = Juego() 
+ 
+while not juego.getFinalizarJuego(): 
     reloj.tick(30) # Limita a 30 FPS
     
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
-            corriendo = False
+            juego.setFinalizarJuego(True)
             
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_LEFT]:
-        next
-    if keys[pygame.K_RIGHT]:
-        next
-    if keys[pygame.K_UP]:
-        next
-    if keys[pygame.K_DOWN]:
-        next
-    if keys[pygame.K_SPACE]:
-        next
-            
-    pantalla.blit(fondo, (0, 0))
+        if evento.type == pygame.KEYDOWN:
+            juego.keyPressed(evento.key)
+                
+    if juego.getMostrarMenu():
+        iniciarJuego = juego.mostrarMenu(pantalla, fondo, TAM_PANTALLA_X, TAM_PANTALLA_Y)
+    if not juego.getMostrarMenu():
+        juego.iniciarJuego(pantalla)
+        
     pygame.display.update()
     

@@ -1,7 +1,7 @@
 import pygame
-from util.constantes import TAMAÑO_BALA, VELOCIDAD_BALA, IMG_BALA
-from nave import Nave
-from enemigo import Enemigo
+from util import *
+from .nave import Nave
+from .enemigo import Enemigo
 
 class Bala(pygame.sprite.Sprite):
     def __init__(self, dispara: Nave | Enemigo, IMG_BALA, TAMAÑO_BALA, VELOCIDAD_BALA):
