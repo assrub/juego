@@ -76,12 +76,10 @@ class Juego(pygame.sprite.Sprite):
             naveJugador.moverIzquierda()
         if keys[pygame.K_RIGHT] and naveJugador.rect.right < TAM_PANTALLA_X:
             naveJugador.moverDerecha()
-        if keys[pygame.K_UP] and naveJugador.rect.left > 0:
-            pass #ARRIBA
-        if keys[pygame.K_DOWN] and naveJugador.rect.left < TAM_PANTALLA_Y:
-            pass #ABAJO
-        if keys[pygame.K_SPACE]:
-            naveJugador.Disparar() # IMPLEMENTARRRRRRR
+            
+        if self.teclasPresionadas == pygame.K_SPACE:
+            naveJugador.Disparar() 
+            self.teclasPresionadas = None
 
         todos = pygame.sprite.Group()
         todos.add(naveJugador)
