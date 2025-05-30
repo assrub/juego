@@ -17,8 +17,8 @@ while not juego.finalizarJuego:
         if evento.type == pygame.KEYDOWN:
             juego.keyPressed(evento.key)
                 
-    if juego.mostrarMenu():
-        pass
+    if juego.getShowMenu():
+        juego.mostrarMenu()
     else:
         juego.iniciarJuego()
         

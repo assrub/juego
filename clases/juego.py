@@ -11,12 +11,13 @@ class Juego(pygame.sprite.Sprite):
 
         self.tamañoPantallaX = TAM_PANTALLA_X
         self.tamañoPantallaY = TAM_PANTALLA_Y
+        self.showMenu = True
         self.finalizarJuego = False
         self.teclasPresionadas = None
 
         #VARIABLES
         self.pantalla = pygame.display.set_mode((self.tamañoPantallaX, self.tamañoPantallaY))
-        self.fondo = pygame.image.load("./assets/Imagenes/fondo.jpg").convert()
+        self.fondo = pygame.image.load("./assets/Imagenes/fondo.gif").convert()
         self.fondo = pygame.transform.scale(self.fondo, (self.tamañoPantallaX, self.tamañoPantallaY))
         pygame.display.set_caption("PEPE")
 
@@ -37,7 +38,7 @@ class Juego(pygame.sprite.Sprite):
             self.teclasPresionadas = None
 
         if self.teclasPresionadas == pygame.K_RETURN:
-            return False
+            self.showMenu = False
             
 
         self.pantalla.blit(self.fondo, (0, 0))
@@ -50,14 +51,15 @@ class Juego(pygame.sprite.Sprite):
                            FUENTE_MENU_COLOR_SELECCION if self.Cantjugadores == 2 else FUENTE_MENU_COLOR, 
                            (self.tamañoPantallaX*0.4,self.tamañoPantallaY*0.5))
         txtPlayer2.renderizar()
-        return True
 
 
     def iniciarJuego(self):
         self.actualizarJuego() 
 
 
-
+    def getShowMenu(self):
+        return self.showMenu
+    
     def setFinalizarJuego(self, finalizarJuego):
         self.finalizarJuego = finalizarJuego 
 
